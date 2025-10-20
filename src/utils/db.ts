@@ -146,7 +146,7 @@ async function _getProject(db: dbType, method: "id" | "slug", data: string) {
     ...project,
     badges: project.badges.map(badge => badge.badge_id),
     visibility: access.visibility,
-  }
+  } as ProjectType
 }
 
 export async function getProjectById(db: dbType, id: string) {

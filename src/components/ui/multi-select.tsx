@@ -190,12 +190,12 @@ export function VirtualizedMultiSelect({
                       <Badge
                         key={item.value}
                         variant="secondary"
-                        className="flex items-center py-1 px-2 text-sm gap-2"
+                        className="flex items-center py-1 px-2 text-sm gap-2 select-none"
                       >
                         {item.icon && (
                           <FetchSimpleIcon
                             slug={item.icon}
-                            className="h-6 w-6"
+                            className="h-4 w-4"
                             style={{ fill: item.color }}
                           />
                         )}
