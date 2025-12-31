@@ -10,8 +10,8 @@ import { signInSchema, signUpSchema } from "@/utils/validations"
 
 const fieldErrorMap: Record<string, string> = {
   email: "INVALID_EMAIL",
-  name: "INVALID_NAME",
   password: "INVALID_PASSWORD",
+  name: "INVALID_NAME",
   username: "INVALID_USERNAME",
   displayUsername: "INVALID_DISPLAY_USERNAME",
 }
@@ -33,10 +33,11 @@ const beforeHook = createAuthMiddleware(async ctx => {
     })
 
     if (!parsed.success) {
+      // FIXME: temp gambiarra
       const errorCodes = getErrorCodes(parsed.error)
 
       if (errorCodes.length > 0) {
-        throw new APIError("BAD_REQUEST", errorCodes)
+        throw new APIError("BAD_REQUEST", { code: errorCodes[0] })
       }
     }
   }
@@ -48,10 +49,11 @@ const beforeHook = createAuthMiddleware(async ctx => {
     })
 
     if (!parsed.success) {
+      // FIXME: temp gambiarra
       const errorCodes = getErrorCodes(parsed.error)
 
       if (errorCodes.length > 0) {
-        throw new APIError("BAD_REQUEST", errorCodes)
+        throw new APIError("BAD_REQUEST", { code: errorCodes[0] })
       }
     }
   }
@@ -61,7 +63,7 @@ export const auth = betterAuth({
   database: drizzleAdapter(db, { provider: "pg", schema }),
   emailAndPassword: {
     enabled: true,
-    disableSignUp: true,
+    disableSignUp: false,
     minPasswordLength: 8,
     maxPasswordLength: 32,
   },

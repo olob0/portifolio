@@ -76,7 +76,7 @@ export function FormSignIn({
     <Form {...form}>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-4 border-2 p-4 rounded-2xl min-w-[400px] max-h-[60%] overflow-y-auto"
+        className="space-y-4 border-2 p-4 rounded-2xl min-w-100 max-h-[60%] overflow-y-auto"
       >
         <h1 className="text-2xl font-bold mb-4 text-center">Sign in</h1>
 

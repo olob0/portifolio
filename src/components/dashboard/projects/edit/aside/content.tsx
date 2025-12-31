@@ -34,6 +34,7 @@ export default function AsideContent({ project }: { project: ProjectType }) {
       title: project.title,
       visibility: project.visibility,
     },
+    mode: "onChange",
   })
 
   const watchedValues = form.watch()
@@ -49,10 +50,15 @@ export default function AsideContent({ project }: { project: ProjectType }) {
   }, [debouncedStringValues])
 
   function handleChange(data: z.infer<typeof projectUpdateSchema>) {
+    if (!form.formState.isValid) {
+      return
+    }
+
     setProject({
       ...project,
       ...data,
     })
+    form.clearErrors()
   }
 
   return (
@@ -96,7 +102,15 @@ export default function AsideContent({ project }: { project: ProjectType }) {
             <FormItem>
               <FormLabel>Slug</FormLabel>
               <FormControl>
-                <Input placeholder="slug" {...field} />
+                <Input
+                  placeholder="my-cool-project"
+                  {...field}
+                  onChange={event => {
+                    const value = event.target.value
+                    const sanitizedValue = value.replace(/[^a-z0-9-]/g, "")
+                    field.onChange(sanitizedValue)
+                  }}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

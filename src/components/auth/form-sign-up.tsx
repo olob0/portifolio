@@ -84,11 +84,11 @@ export function FormSignUp({
 
   return (
     <Form {...form}>
-      <div className="border-2 p-4 rounded-2xl min-w-[400px]">
+      <div className="border-2 p-4 rounded-2xl min-w-100">
         <h1 className="text-2xl font-bold mb-4 text-center">Sign up</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <ScrollArea className="h-[300px] mb-4">
+          <ScrollArea className="h-75 mb-4">
             <div className="space-y-4 mb-4">
               <FormField
                 control={form.control}

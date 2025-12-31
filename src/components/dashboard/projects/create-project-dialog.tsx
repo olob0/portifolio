@@ -88,14 +88,14 @@ export function CreateProjectDialog() {
     if (!formState.dirtyFields.slug) {
       form.setValue("slug", slugify(titleValue), { shouldValidate: true })
     }
-  }, [titleValue, formState.dirtyFields.slug, form.setValue]) // Dependência um pouco mais específica
+  }, [titleValue, formState.dirtyFields.slug, form.setValue])
 
   function onSubmit(data: z.infer<typeof projectInsertSchema>) {
     setLoading(true)
     mutation.mutate(data)
   }
   return (
-    <DialogContent className="sm:max-w-[425px]">
+    <DialogContent className="sm:max-w-106.25">
       <DialogHeader>
         <DialogTitle>Create a new project</DialogTitle>
         <DialogDescription>

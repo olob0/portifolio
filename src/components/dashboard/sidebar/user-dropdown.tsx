@@ -10,7 +10,7 @@ import {
 } from "lucide-react"
 import { redirect } from "next/navigation"
 import { useTheme } from "next-themes"
-import SessionCountdown from "@/components/session-countdown"
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   DropdownMenu,
@@ -40,7 +40,9 @@ export default function UserDropdown({ user }: { user: Session["user"] }) {
       <DropdownMenuLabel className="p-0 font-normal">
         <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
           <Avatar className="h-8 w-8 rounded-lg">
-            {user.image && <AvatarImage src={user.image} alt="User avatar" />}
+            {user.image && (
+              <AvatarImage src={user.image} alt={`${user.name}'s avatar`} />
+            )}
             <AvatarFallback className="rounded-lg">
               {user.name.charAt(0)}
             </AvatarFallback>
@@ -48,9 +50,6 @@ export default function UserDropdown({ user }: { user: Session["user"] }) {
 
           <div className="grid flex-1 text-left text-sm leading-tight">
             <span className="truncate">{user.name}</span>
-            <span className="truncate text-muted-foreground">
-              Expires in: <SessionCountdown />
-            </span>
           </div>
         </div>
       </DropdownMenuLabel>

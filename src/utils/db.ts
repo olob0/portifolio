@@ -107,7 +107,7 @@ export async function editProject(
         .where(eq(ProjectAccessTable.projectId, projectId))
     }
 
-    if (badges) {
+    if (badges?.length) {
       await tx.delete(BadgesTable).where(eq(BadgesTable.projectId, projectId))
 
       await tx

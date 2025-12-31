@@ -3,7 +3,7 @@
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
-import { improveIconColorVisibility, oklchToRGBA } from "@/utils/tools"
+import { improveIconColorVisibility } from "@/utils/tools"
 import { Skeleton } from "./ui/skeleton"
 
 export default function FetchSimpleIcon({
@@ -32,15 +32,11 @@ export default function FetchSimpleIcon({
         if (path) {
           setPath(path)
 
-          const backgroundColorRaw = getComputedStyle(
-            document.body
-          ).getPropertyValue("--background")
-
-          const backgroundColor = oklchToRGBA(backgroundColorRaw)
+          const backgroundColor = resolvedTheme === "dark" ? "#09090b" : "#fff"
 
           const improvedColor = improveIconColorVisibility(
             style?.fill || (resolvedTheme === "dark" ? "#fff" : "#000"),
-            `rgb(${backgroundColor[0]}, ${backgroundColor[1]}, ${backgroundColor[2]})`,
+            backgroundColor,
             resolvedTheme || "light"
           )
 

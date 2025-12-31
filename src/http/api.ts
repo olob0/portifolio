@@ -52,13 +52,18 @@ export async function getProject(projectId: string) {
 }
 
 export async function updateProject(projectId: string, project: ProjectType) {
-  // biome-ignore lint/correctness/noUnusedVariables: ignore
   const { createdAt, id, ...data } = project
 
-  await fetch(`/api/projects/${projectId}`, {
+  const response = await fetch(`/api/projects/${projectId}`, {
     method: "PATCH",
     body: JSON.stringify(data),
   })
+
+  if (!response.ok) {
+    throw response
+  }
+
+  return response
 }
 
 export async function deleteProject(projectId: string): Promise<void> {

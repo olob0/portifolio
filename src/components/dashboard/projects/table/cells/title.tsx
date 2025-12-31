@@ -3,9 +3,9 @@
 import type { Row } from "@tanstack/react-table"
 import { LucidePencil } from "lucide-react"
 import Link from "next/link"
-import type { ColumnProject } from "@/components/dashboard/projects/columns"
+import type { ColumnType } from "../table-columns"
 
-export default function Title({ row }: { row: Row<ColumnProject> }) {
+export default function Title({ row }: { row: Row<ColumnType> }) {
   return (
     <Link
       href={`/dashboard/projects/${row.original.id}/edit`}

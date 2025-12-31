@@ -41,7 +41,11 @@ export default function Footer({
   }, [])
 
   if (loading) {
-    return <Skeleton className="flex w-full min-w-0 h-12 rounded-lg" />
+    return (
+      <div className="p-2">
+        <Skeleton className="flex w-full min-w-0 h-12 rounded-lg" />
+      </div>
+    )
   }
 
   if (!user) {
@@ -70,11 +74,12 @@ export default function Footer({
                 <EllipsisVerticalIcon className="ml-auto size-4" />
               </SidebarMenuButton>
             </DropdownMenuTrigger>
+
             <DropdownMenuContent
               align="end"
               side="right"
               sideOffset={4}
-              className="min-w-[250px]"
+              className="min-w-62.5"
             >
               <UserDropdown user={user} />
             </DropdownMenuContent>

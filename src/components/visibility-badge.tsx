@@ -11,7 +11,7 @@ export default function VisibilityBadge({
   return (
     <div
       className={cn(
-        "flex items-center border-2 py-[1px] px-2 rounded-full font-mono text-sm tracking-wider",
+        "flex items-center border-2 py-px px-2 rounded-full font-mono text-sm tracking-wider",
         visibility === ProjectVisibility.PUBLIC &&
           "dark:bg-green-950/50 bg-green-100",
         visibility === ProjectVisibility.PRIVATE &&
